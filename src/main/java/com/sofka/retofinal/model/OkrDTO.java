@@ -1,23 +1,29 @@
-package com.sofka.retofinal.collections;
+package com.sofka.retofinal.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-@Document
-public class okrEntity {
-    @Id
+public class OkrDTO {
     private String id;
+    @NotBlank
     private String userId;
+    @NotBlank
     private String title;
+    @NotBlank
     private String object;
+    @NotBlank
     private String responName;
+    @NotBlank
     private String responEmail;
+    @NotBlank
     private String vertical;
     private String description;
+    private List<KrDTO> krs;
 
-
-    public okrEntity(String id, String userId, String title, String object, String responName,
-                     String responEmail, String vertical, String description) {
+    public OkrDTO(String id, String userId, String title, String object, String responName,
+                  String responEmail, String vertical, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -26,6 +32,12 @@ public class okrEntity {
         this.responEmail = responEmail;
         this.vertical = vertical;
         this.description = description;
+
+    }
+
+    public List<KrDTO> getKrs() {
+        this.krs = Optional.ofNullable(krs).orElse(new ArrayList<>());
+        return krs;
     }
 
     public String getId() {

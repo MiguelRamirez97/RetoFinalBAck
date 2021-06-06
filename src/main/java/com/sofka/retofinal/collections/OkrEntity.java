@@ -1,25 +1,23 @@
-package com.sofka.retofinal.model;
+package com.sofka.retofinal.collections;
 
-import javax.validation.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class okrDTO {
+@Document
+public class OkrEntity {
+    @Id
     private String id;
-    @NotBlank
     private String userId;
-    @NotBlank
     private String title;
-    @NotBlank
     private String object;
-    @NotBlank
     private String responName;
-    @NotBlank
     private String responEmail;
-    @NotBlank
     private String vertical;
     private String description;
 
-    public okrDTO(String id, String userId, String title, String object, String responName,
-                  String responEmail, String vertical, String description) {
+
+    public OkrEntity(String id, String userId, String title, String object, String responName,
+                     String responEmail, String vertical, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
