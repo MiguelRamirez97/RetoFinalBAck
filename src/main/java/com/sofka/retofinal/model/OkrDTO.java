@@ -43,6 +43,10 @@ public class OkrDTO {
         return krs;
     }
 
+    public void setKrs(List<KrDTO> krs) {
+        this.krs = krs;
+    }
+
     public String getId() {
         return id;
     }
