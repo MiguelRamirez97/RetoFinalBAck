@@ -22,6 +22,9 @@ public class OkrDTO {
     private String description;
     private List<KrDTO> krs;
 
+    public OkrDTO() {
+    }
+
     public OkrDTO(String id, String userId, String title, String object, String responName,
                   String responEmail, String vertical, String description) {
         this.id = id;

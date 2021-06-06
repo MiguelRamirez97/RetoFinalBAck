@@ -1,7 +1,9 @@
 package com.sofka.retofinal.mapper;
 
 import com.sofka.retofinal.collections.KrEntity;
+import com.sofka.retofinal.collections.OkrEntity;
 import com.sofka.retofinal.model.KrDTO;
+import com.sofka.retofinal.model.OkrDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -24,7 +26,7 @@ public class MapperUtils {
         };
     }
 
-    public Function<KrEntity,KrDTO> krEntityToKrDto(){
+    public Function<KrEntity, KrDTO> krEntityToKrDto() {
         return krEntity -> {
             var krDto = new KrDTO();
             krDto.setKrId(krEntity.getId());
@@ -37,6 +39,36 @@ public class MapperUtils {
             krDto.setResponEmail(krEntity.getResponEmail());
             krDto.setPercentageWeight(krEntity.getPercentageWeight());
             return krDto;
+        };
+    }
+
+    public Function<OkrDTO, OkrEntity> okrDTOToOkrEntity() {
+        return okrDTO -> {
+            var okrEntity = new OkrEntity();
+            okrEntity.setUserId(okrDTO.getUserId());
+            okrEntity.setTitle(okrDTO.getTitle());
+            okrEntity.setObject(okrDTO.getObject());
+            okrEntity.setResponName(okrDTO.getResponName());
+            okrEntity.setResponEmail(okrDTO.getResponEmail());
+            okrEntity.setVertical(okrDTO.getVertical());
+            okrEntity.setDescription(okrDTO.getDescription());
+            return okrEntity;
+        };
+    }
+
+    public Function<OkrEntity, OkrDTO> okrEntityToOkrDTO() {
+        return okrEntity -> {
+            var okrDTO = new OkrDTO();
+            okrDTO.setUserId(okrEntity.getUserId());
+            okrDTO.setTitle(okrEntity.getTitle());
+            okrDTO.setObject(okrEntity.getObject());
+            okrDTO.setResponName(okrEntity.getResponName());
+            okrDTO.setResponEmail(okrEntity.getResponEmail());
+            okrDTO.setVertical(okrEntity.getVertical());
+            okrDTO.setDescription(okrEntity.getDescription());
+            return okrDTO;
+
+
         };
     }
 }

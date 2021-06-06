@@ -15,6 +15,8 @@ public class OkrEntity {
     private String vertical;
     private String description;
 
+    public OkrEntity() {
+    }
 
     public OkrEntity(String id, String userId, String title, String object, String responName,
                      String responEmail, String vertical, String description) {
