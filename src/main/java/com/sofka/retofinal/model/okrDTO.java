@@ -1,0 +1,96 @@
+package com.sofka.retofinal.model;
+
+import javax.validation.constraints.NotBlank;
+
+public class okrDTO {
+    private String id;
+    @NotBlank
+    private String userId;
+    @NotBlank
+    private String title;
+    @NotBlank
+    private String object;
+    @NotBlank
+    private String responName;
+    @NotBlank
+    private String responEmail;
+    @NotBlank
+    private String vertical;
+    private String description;
+
+    public okrDTO(String id, String userId, String title, String object, String responName,
+                  String responEmail, String vertical, String description) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.object = object;
+        this.responName = responName;
+        this.responEmail = responEmail;
+        this.vertical = vertical;
+        this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
+    }
+
+    public String getResponName() {
+        return responName;
+    }
+
+    public void setResponName(String responName) {
+        this.responName = responName;
+    }
+
+    public String getResponEmail() {
+        return responEmail;
+    }
+
+    public void setResponEmail(String responEmail) {
+        this.responEmail = responEmail;
+    }
+
+    public String getVertical() {
+        return vertical;
+    }
+
+    public void setVertical(String vertical) {
+        this.vertical = vertical;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
