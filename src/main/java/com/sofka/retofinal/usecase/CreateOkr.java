@@ -31,12 +31,10 @@ public class CreateOkr {
     public Mono<String> apply(@Valid OkrDTO okrDTO){
         return okrRepository.save(mapperUtils.okrDTOToOkrEntity().apply(okrDTO))
                 .flatMap(okr ->  {
-                    okrDTO.getKrs().forEach(kr-> {
-                        kr.setOkrId(okr.getId());
-                        krRepository.save(mapperUtils.krDTOToKrEntity().apply(kr));
-
-                    } );
+                    okrDTO.getKrs().forEach(kr -> kr.setOkrId(okr.getId()));
+                    krRepository.saveAll(mapperUtils.listKrDtoToListKrEntity().apply(okrDTO.getKrs()))
+                            .subscribe();
                     return Mono.just(okr.getId());
-                }  );
+                });
     }
 }
