@@ -19,6 +19,9 @@ public class KrEntity {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    public KrEntity() {
+    }
+
     public KrEntity(String id, String okrId, String keyResult, String responName, String responEmail, String description, Integer percentageWeight, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.okrId = okrId;
