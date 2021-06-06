@@ -11,6 +11,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.Optional;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @Service
 @Validated
@@ -28,13 +31,25 @@ public class CreateOkr {
 
     }
 
-    public Mono<String> apply(@Valid OkrDTO okrDTO){
+    public Mono<String> apply(@Valid OkrDTO okrDTO) {
         return okrRepository.save(mapperUtils.okrDTOToOkrEntity().apply(okrDTO))
-                .flatMap(okr ->  {
-                    okrDTO.getKrs().forEach(kr -> kr.setOkrId(okr.getId()));
-                    krRepository.saveAll(mapperUtils.listKrDtoToListKrEntity().apply(okrDTO.getKrs()))
-                            .subscribe();
-                    return Mono.just(okr.getId());
+                .flatMap(okr -> {
+                    var tamaño =okrDTO.getKrs().size() ;
+                    var range = IntStream.range(0,tamaño );
+
+                    var totalWeight = range.reduce(0, (acc, s2) ->
+                            (acc + okrDTO.getKrs().get(s2).getPercentageWeight()));
+
+                    return     Optional.of(totalWeight).filter(tw -> tw.equals(100)).map(t -> {
+                        okrDTO.getKrs().forEach(kr -> kr.setOkrId(okr.getId()));
+                        krRepository.saveAll(mapperUtils.listKrDtoToListKrEntity().apply(okrDTO.getKrs()))
+                                .subscribe();
+                        return Mono.just(okr.getId());
+                    }).orElseThrow(() -> new IllegalArgumentException("el total de pesos % debe ser igual a 100%"));
+
                 });
     }
+
+
+
 }
