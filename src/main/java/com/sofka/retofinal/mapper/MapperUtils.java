@@ -12,6 +12,7 @@ public class MapperUtils {
     public Function<KrDTO, KrEntity> krDTOToKrEntity() {
         return krDTO -> {
             var krEntity = new KrEntity();
+            krEntity.setOkrId(krDTO.getOkrId());
             krEntity.setDescription(krDTO.getDescription());
             krEntity.setStartDate(krDTO.getStartDate());
             krEntity.setEndDate(krDTO.getEndDate());
@@ -23,5 +24,19 @@ public class MapperUtils {
         };
     }
 
-
+    public Function<KrEntity,KrDTO> krEntityToKrDto(){
+        return krEntity -> {
+            var krDto = new KrDTO();
+            krDto.setKrId(krEntity.getId());
+            krDto.setOkrId(krEntity.getOkrId());
+            krDto.setDescription(krEntity.getDescription());
+            krDto.setStartDate(krEntity.getStartDate());
+            krDto.setEndDate(krEntity.getEndDate());
+            krDto.setKeyResult(krEntity.getKeyResult());
+            krDto.setResponName(krEntity.getResponName());
+            krDto.setResponEmail(krEntity.getResponEmail());
+            krDto.setPercentageWeight(krEntity.getPercentageWeight());
+            return krDto;
+        };
+    }
 }

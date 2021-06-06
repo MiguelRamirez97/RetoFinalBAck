@@ -7,6 +7,7 @@ public class KrDTO {
 
     @NotBlank
     private String okrId;
+    private String krId;
     @NotBlank
     private String keyResult;
     @NotBlank
@@ -22,8 +23,14 @@ public class KrDTO {
     @NotBlank
     private LocalDate endDate;
 
-    public KrDTO(String okrId, String keyResult, String responName, String responEmail, String description, Integer percentageWeight, LocalDate startDate, LocalDate endDate) {
+    public KrDTO() {
+    }
+
+    public KrDTO(String okrId, String krId, String keyResult, String responName,
+                 String responEmail, String description, Integer percentageWeight,
+                 LocalDate startDate, LocalDate endDate) {
         this.okrId = okrId;
+        this.krId = krId;
         this.keyResult = keyResult;
         this.responName = responName;
         this.responEmail = responEmail;
@@ -31,6 +38,14 @@ public class KrDTO {
         this.percentageWeight = percentageWeight;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public String getKrId() {
+        return krId;
+    }
+
+    public void setKrId(String krId) {
+        this.krId = krId;
     }
 
     public String getOkrId() {
