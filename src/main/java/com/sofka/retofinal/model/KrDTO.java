@@ -23,7 +23,7 @@ public class KrDTO {
     @NotBlank
     private LocalDate startDate;
     @NotBlank
-    private LocalDate endDate;
+        private LocalDate endDate;
 
     public KrDTO() {
     }

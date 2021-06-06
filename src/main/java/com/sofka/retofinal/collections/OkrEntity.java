@@ -9,7 +9,7 @@ public class OkrEntity {
     private String id;
     private String userId;
     private String title;
-    private String object;
+    private String objective;
     private String responName;
     private String responEmail;
     private String vertical;
@@ -18,12 +18,12 @@ public class OkrEntity {
     public OkrEntity() {
     }
 
-    public OkrEntity(String id, String userId, String title, String object, String responName,
+    public OkrEntity(String id, String userId, String title, String objective, String responName,
                      String responEmail, String vertical, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
-        this.object = object;
+        this.objective = objective;
         this.responName = responName;
         this.responEmail = responEmail;
         this.vertical = vertical;
@@ -54,12 +54,12 @@ public class OkrEntity {
         this.title = title;
     }
 
-    public String getObject() {
-        return object;
+    public String getObjective() {
+        return objective;
     }
 
-    public void setObject(String object) {
-        this.object = object;
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 
     public String getResponName() {

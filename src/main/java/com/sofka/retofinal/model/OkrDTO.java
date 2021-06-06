@@ -12,7 +12,7 @@ public class OkrDTO {
     @NotBlank
     private String title;
     @NotBlank
-    private String object;
+    private String objective;
     @NotBlank
     private String responName;
     @NotBlank
@@ -25,12 +25,12 @@ public class OkrDTO {
     public OkrDTO() {
     }
 
-    public OkrDTO(String id, String userId, String title, String object, String responName,
+    public OkrDTO(String id, String userId, String title, String objective, String responName,
                   String responEmail, String vertical, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
-        this.object = object;
+        this.objective = objective;
         this.responName = responName;
         this.responEmail = responEmail;
         this.vertical = vertical;
@@ -67,12 +67,12 @@ public class OkrDTO {
         this.title = title;
     }
 
-    public String getObject() {
-        return object;
+    public String getObjective() {
+        return objective;
     }
 
-    public void setObject(String object) {
-        this.object = object;
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 
     public String getResponName() {
