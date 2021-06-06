@@ -16,13 +16,14 @@ public class KrEntity {
     private String responEmail;
     private String description;
     private Integer percentageWeight;
+    private Integer progressKr;
     private LocalDate startDate;
     private LocalDate endDate;
 
     public KrEntity() {
     }
 
-    public KrEntity(String id, String okrId, String keyResult, String responName, String responEmail, String description, Integer percentageWeight, LocalDate startDate, LocalDate endDate) {
+    public KrEntity(String id, String okrId, String keyResult, String responName, String responEmail, String description, Integer percentageWeight, Integer progressKr, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.okrId = okrId;
         this.keyResult = keyResult;
@@ -30,8 +31,17 @@ public class KrEntity {
         this.responEmail = responEmail;
         this.description = description;
         this.percentageWeight = percentageWeight;
+        this.progressKr = progressKr;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Integer getProgressKr() {
+        return progressKr;
+    }
+
+    public void setProgressKr(Integer progressKr) {
+        this.progressKr = progressKr;
     }
 
     public String getId() {

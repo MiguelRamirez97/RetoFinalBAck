@@ -14,6 +14,8 @@ public class MapperUtils {
     public Function<KrDTO, KrEntity> krDTOToKrEntity() {
         return krDTO -> {
             var krEntity = new KrEntity();
+            krEntity.setProgressKr(krDTO.getProgressKr());
+            krEntity.setProgressKr(krDTO.getProgressKr());
             krEntity.setOkrId(krDTO.getOkrId());
             krEntity.setDescription(krDTO.getDescription());
             krEntity.setStartDate(krDTO.getStartDate());
@@ -29,6 +31,7 @@ public class MapperUtils {
     public Function<KrEntity, KrDTO> krEntityToKrDto() {
         return krEntity -> {
             var krDto = new KrDTO();
+            krDto.setProgressKr(krEntity.getProgressKr());
             krDto.setKrId(krEntity.getId());
             krDto.setOkrId(krEntity.getOkrId());
             krDto.setDescription(krEntity.getDescription());
