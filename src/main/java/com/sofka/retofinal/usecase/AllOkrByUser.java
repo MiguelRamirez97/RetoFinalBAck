@@ -31,7 +31,7 @@ public class AllOkrByUser implements Function<String, Flux<OkrDTO>> {
                 .flatMap(joinOkrWithKr());
     }
 
-    private Function<OkrDTO,Mono<OkrDTO>> joinOkrWithKr(){
+    public Function<OkrDTO,Mono<OkrDTO>> joinOkrWithKr(){
         return okrDto ->
             Mono.just(okrDto).zipWith(
                     krRepository.findAllByOkrId(okrDto.getId())
