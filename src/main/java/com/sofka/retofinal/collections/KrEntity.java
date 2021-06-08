@@ -23,7 +23,9 @@ public class KrEntity {
     public KrEntity() {
     }
 
-    public KrEntity(String id, String okrId, String keyResult, String responName, String responEmail, String description, Integer percentageWeight, Integer progressKr, LocalDate startDate, LocalDate endDate) {
+    public KrEntity(String id, String okrId, String keyResult, String responName, String responEmail,
+                    String description, Integer percentageWeight, Integer progressKr, LocalDate startDate,
+                    LocalDate endDate) {
         this.id = id;
         this.okrId = okrId;
         this.keyResult = keyResult;
