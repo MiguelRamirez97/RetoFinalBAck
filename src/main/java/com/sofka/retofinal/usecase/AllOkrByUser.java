@@ -4,6 +4,7 @@ import com.sofka.retofinal.mapper.MapperUtils;
 import com.sofka.retofinal.model.OkrDTO;
 import com.sofka.retofinal.repository.KrRepository;
 import com.sofka.retofinal.repository.OkrRepository;
+import com.sofka.retofinal.utils.Utilities;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,20 +29,21 @@ public class AllOkrByUser implements Function<String, Flux<OkrDTO>> {
     public Flux<OkrDTO> apply(String userId) {
         return okrRepository.findByUserId(userId)
                 .map(mapperUtils.okrEntityToOkrDTO())
-                .flatMap(joinOkrWithKr());
+                .flatMap(joinOkrWithKr())
+                .flatMap(okr -> Utilities.modifiedProgressOkr(okr));
     }
 
-    public Function<OkrDTO,Mono<OkrDTO>> joinOkrWithKr(){
+    public Function<OkrDTO, Mono<OkrDTO>> joinOkrWithKr() {
         return okrDto ->
-            Mono.just(okrDto).zipWith(
-                    krRepository.findAllByOkrId(okrDto.getId())
-                            .map(mapperUtils.krEntityToKrDto())
-                            .collectList(),
-                    (okr,krs) -> {
-                        okr.setKrs(krs);
-                        return okr;
-                    }
-            );
+                Mono.just(okrDto).zipWith(
+                        krRepository.findAllByOkrId(okrDto.getId())
+                                .map(mapperUtils.krEntityToKrDto())
+                                .collectList(),
+                        (okr, krs) -> {
+                            okr.setKrs(krs);
+                            return okr;
+                        }
+                );
     }
 
 }

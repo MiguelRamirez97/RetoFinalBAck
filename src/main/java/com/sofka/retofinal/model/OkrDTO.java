@@ -20,6 +20,7 @@ public class OkrDTO {
     @NotBlank
     private String vertical;
     private String description;
+    private Long progressOkr;
     private List<KrDTO> krs;
 
     public OkrDTO() {
@@ -109,5 +110,13 @@ public class OkrDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getProgressOkr() {
+        return progressOkr;
+    }
+
+    public void setProgressOkr(Long progressOkr) {
+        this.progressOkr = progressOkr;
     }
 }
