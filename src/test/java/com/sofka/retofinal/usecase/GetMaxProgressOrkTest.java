@@ -17,11 +17,13 @@ import reactor.test.StepVerifier;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-class GetOrkByIdTest {
+class GetMaxProgressOrkTest {
+
 
     @Autowired
-    GetOrkById useCase;
+    GetMaxProgressOrk useCase;
 
     @MockBean
     OkrRepository okrRepository;
@@ -30,18 +32,19 @@ class GetOrkByIdTest {
     KrRepository krRepository;
 
     @Test
-    void OkrByIdTest(){
+    void GetProgressOkrTest(){
 
+        var userId = "12de43322f";
         var okrTestOne = new OkrEntity("123","12de43322f","title1","objective1","pepe","pepe@pepe.com","DESARROLLO","anydescription");
 
 
-        Mockito.when(okrRepository.findById(Mockito.anyString()))
-                .thenReturn(Mono.just(okrTestOne));
+        Mockito.when(okrRepository.findByUserId(Mockito.anyString()))
+                .thenReturn(Flux.just(okrTestOne));
 
         Mockito.when(krRepository.findAllByOkrId(Mockito.anyString()))
                 .thenReturn(Flux.empty());
 
-        var response = useCase.apply(okrTestOne.getId());
+        var response = useCase.apply(userId);
         StepVerifier.create(response)
                 .expectNextMatches(okrDTO -> okrDTO.getId().equalsIgnoreCase("123"))
                 .verifyComplete();
@@ -64,4 +67,5 @@ class GetOrkByIdTest {
                 .verifyComplete();
     }
 }
+
 
