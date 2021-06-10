@@ -1,6 +1,7 @@
 package com.sofka.retofinal.usecase;
 
 import com.sofka.retofinal.mapper.MapperUtils;
+import com.sofka.retofinal.model.KrDTO;
 import com.sofka.retofinal.model.OkrDTO;
 import com.sofka.retofinal.repository.KrRepository;
 import com.sofka.retofinal.repository.OkrRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -28,12 +30,12 @@ public class GetMaxProgressOrk implements Function<String, Mono<OkrDTO>> {
 
     @Override
     public Mono<OkrDTO> apply(String userId) {
-      return   okrRepository.findByUserId(userId)
+      return    okrRepository.findByUserId(userId)
                .map(mapperUtils.okrEntityToOkrDTO())
                .flatMap(joinOkrWithKr())
                .flatMap(Utilities::modifiedProgressOkr)
                .collect(Collectors.maxBy(Comparator.comparing(OkrDTO::getProgressOkr)))
-               .flatMap(okrDTO -> Mono.just(okrDTO.get())
+               .flatMap(okrDTO -> Mono.just(okrDTO.orElse(errorReturnDefault(userId)))
                );
 
     }
@@ -50,5 +52,15 @@ public class GetMaxProgressOrk implements Function<String, Mono<OkrDTO>> {
                             return okr;
                         });
 
+    }
+
+    private OkrDTO errorReturnDefault(String userId){
+        OkrDTO okrDTO = new OkrDTO("00",userId, "insertar Okr", "insertar titulo","insertar nombre",
+                "insertar email", "insertar vertival", "insertar descripcion");
+        okrDTO.setProgressOkr(0L);
+        okrDTO.getKrs().add(new KrDTO("00", "01", "insertar kr", "insertar kr",
+                "insertarkr", "insertar kr", 0,
+                LocalDate.now(), LocalDate.now(),0));
+        return okrDTO;
     }
 }
