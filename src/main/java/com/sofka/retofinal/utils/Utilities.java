@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public class Utilities {
-    public static Mono<OkrDTO> modifiedProgressOkr(OkrDTO okrDTO) {
+    public static Mono<OkrDTO> createProgressOkr(OkrDTO okrDTO) {
 
         Flux.fromIterable(okrDTO.getKrs()).map(kr ->
                 (Double.parseDouble(kr.getPercentageWeight().toString()) / 100)

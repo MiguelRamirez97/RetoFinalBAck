@@ -29,7 +29,7 @@ public class GetOrkById implements Function<String, Mono<OkrDTO>> {
         return okrRepository.findById(id)
                 .map(mapperUtils.okrEntityToOkrDTO())
                 .flatMap(joinOkrWithKr())
-                .flatMap(Utilities::modifiedProgressOkr);
+                .flatMap(Utilities::createProgressOkr);
     }
 
     public Function<OkrDTO, Mono<OkrDTO>> joinOkrWithKr() {

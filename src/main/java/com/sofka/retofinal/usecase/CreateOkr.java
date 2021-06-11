@@ -47,7 +47,7 @@ public class CreateOkr {
 
     }
 
-    private int calculateTotalWeight(OkrDTO okrDTO) {
+    public static int calculateTotalWeight(OkrDTO okrDTO) {
         return IntStream.range(0, okrDTO.getKrs().size()).reduce(0, (acc, s2) ->
                 (acc + okrDTO.getKrs().get(s2).getPercentageWeight()));
     }
