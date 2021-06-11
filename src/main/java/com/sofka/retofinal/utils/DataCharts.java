@@ -18,14 +18,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class DataKrs {
+public class DataCharts {
 
     private final HistoryOkrRepository historyOkrRepository;
     private final KrRepository krRepository;
     private final MapperUtils mapperUtils;
 
 
-    public DataKrs(HistoryOkrRepository historyOkrRepository, KrRepository krRepository, MapperUtils mapperUtils) {
+    public DataCharts(HistoryOkrRepository historyOkrRepository, KrRepository krRepository, MapperUtils mapperUtils) {
         this.historyOkrRepository = historyOkrRepository;
         this.krRepository = krRepository;
         this.mapperUtils = mapperUtils;
@@ -46,15 +46,11 @@ public class DataKrs {
 
     public Mono<List<Long>> arrayDates(String okrId) {
         var formato = DateTimeFormatter.ofPattern("yyyy-MM");
-
-
         return Mono.zip(searchHistoryDateMin(okrId), searchHistoryDateMax(okrId)).flatMap(objects -> {
             var startDate = LocalDate.parse(Objects.requireNonNull(objects.getT1()));
             var endDate = LocalDate.parse(Objects.requireNonNull(objects.getT2()));
             return getListDataProgress(okrId, formato, startDate, endDate);
         });
-
-
     }
 
     private Mono<List<Long>> getListDataProgress(String okrId, DateTimeFormatter formato, LocalDate startDate, LocalDate endDate) {

@@ -2,26 +2,19 @@ package com.sofka.retofinal.utils;
 
 import com.sofka.retofinal.collections.HistoryOkrEntity;
 import com.sofka.retofinal.collections.KrEntity;
-import com.sofka.retofinal.collections.OkrEntity;
-import com.sofka.retofinal.model.OkrDTO;
 import com.sofka.retofinal.repository.HistoryOkrRepository;
 import com.sofka.retofinal.repository.KrRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.test.StepVerifier;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class DataKrsTest {
+class DataChartsTest {
 
     @MockBean
     KrRepository krRepository;
@@ -30,7 +23,7 @@ class DataKrsTest {
     HistoryOkrRepository historyOkrRepository;
 
     @SpyBean
-    DataKrs dataKrs;
+    DataCharts dataCharts;
 
     @Test
     void DataKrTest2 (){
@@ -45,7 +38,7 @@ class DataKrsTest {
         Mockito.when(historyOkrRepository.findByDateUpdate(Mockito.anyString())).thenReturn(Flux.just(history, history2));
         Mockito.when(historyOkrRepository.findByOkrId(Mockito.anyString())).thenReturn(Flux.just(history, history2));
 
-        dataKrs.arrayDates(krTestOne.getOkrId()).block().forEach(System.out::println);
+        dataCharts.arrayDates(krTestOne.getOkrId()).block().forEach(System.out::println);
 
     }
 
