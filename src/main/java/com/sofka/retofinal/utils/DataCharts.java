@@ -55,7 +55,7 @@ public class DataCharts {
 
     private Mono<List<Long>> getListDataProgress(String okrId, DateTimeFormatter formato, LocalDate startDate, LocalDate endDate) {
         return Flux.fromStream(Stream.iterate(startDate, date -> date.plusMonths(1))
-                .limit(ChronoUnit.MONTHS.between(startDate, endDate) + 1))
+                .limit(ChronoUnit.MONTHS.between(startDate, endDate) +2 ))
                 .flatMap(localDate -> getProgressOkrUpdate(okrId, formato, localDate))
                 .collectList();
     }
