@@ -16,12 +16,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class GetDataCharts {
     @Bean
-    public RouterFunction<ServerResponse> historyTest(GetDataChartsUseCase testHistory){
+    public RouterFunction<ServerResponse> historyTest(GetDataChartsUseCase getDataChartsUseCase){
         return route(GET("/data-chart/{okrId}").and(accept(MediaType.APPLICATION_JSON)),
                 serverRequest -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters
-                                .fromPublisher(testHistory.apply(serverRequest.pathVariable("okrId")), BurnDownDTO.class))
+                                .fromPublisher(getDataChartsUseCase.apply(serverRequest.pathVariable("okrId")), BurnDownDTO.class))
         );
     }
 
