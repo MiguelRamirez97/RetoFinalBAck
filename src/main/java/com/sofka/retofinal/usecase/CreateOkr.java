@@ -50,9 +50,15 @@ public class CreateOkr {
                 .orElseThrow(() -> new IllegalArgumentException("el total de pesos % debe ser igual a 100%"));
 
     }
-
+    
     private void historyKrs(OkrDTO okrDTO){
-        historyOkrRepository.save(new HistoryOkrEntity(okrDTO.getId(), progressOkr, LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM")))).subscribe();
+        historyOkrRepository.save(
+                new HistoryOkrEntity(
+                        okrDTO.getId(),
+                        progressOkr,
+                        LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM"))
+                ))
+                .subscribe();
     }
 
     private int calculateTotalWeight(OkrDTO okrDTO) {

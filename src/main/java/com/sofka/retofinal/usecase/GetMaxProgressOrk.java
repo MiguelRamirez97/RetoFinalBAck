@@ -33,7 +33,7 @@ public class GetMaxProgressOrk implements Function<String, Mono<OkrDTO>> {
       return    okrRepository.findByUserId(userId)
                .map(mapperUtils.okrEntityToOkrDTO())
                .flatMap(joinOkrWithKr())
-               .flatMap(Utilities::modifiedProgressOkr)
+               .flatMap(Utilities::createProgressOkr)
                .collect(Collectors.maxBy(Comparator.comparing(OkrDTO::getProgressOkr)))
                .flatMap(okrDTO -> Mono.just(okrDTO.orElse(errorReturnDefault(userId)))
                );

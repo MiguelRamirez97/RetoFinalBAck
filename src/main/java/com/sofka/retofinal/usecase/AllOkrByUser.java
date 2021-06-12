@@ -30,8 +30,9 @@ public class AllOkrByUser implements Function<String, Flux<OkrDTO>> {
         return okrRepository.findByUserId(userId)
                 .map(mapperUtils.okrEntityToOkrDTO())
                 .flatMap(joinOkrWithKr())
-                .flatMap(Utilities::modifiedProgressOkr);
+                .flatMap(Utilities::createProgressOkr);
     }
+
 
     public Function<OkrDTO, Mono<OkrDTO>> joinOkrWithKr() {
         return okrDto ->
