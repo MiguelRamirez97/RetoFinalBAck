@@ -2,6 +2,7 @@ package com.sofka.retofinal.usecase;
 
 
 import com.sofka.retofinal.collections.HistoryOkrEntity;
+import com.sofka.retofinal.collections.OkrEntity;
 import com.sofka.retofinal.mapper.MapperUtils;
 import com.sofka.retofinal.model.OkrDTO;
 import com.sofka.retofinal.repository.HistoryOkrRepository;
@@ -36,11 +37,11 @@ public class CreateOkr {
     }
 
     public Mono<String> apply(@Valid OkrDTO okrDTO) {
-        historyKrs(okrDTO);
         return Optional.of(calculateTotalWeight(okrDTO))
                 .filter(tw -> tw.equals(100))
                 .map(t -> okrRepository.save(mapperUtils.okrDTOToOkrEntity().apply(okrDTO))
                         .map(okrE -> {
+                            historyKrs(okrE);
                             okrDTO.getKrs().forEach(kr -> kr.setOkrId(okrE.getId()));
                             krRepository.saveAll(mapperUtils.listKrDtoToListKrEntity().apply(okrDTO.getKrs()))
                                     .subscribe();
@@ -51,10 +52,10 @@ public class CreateOkr {
 
     }
     
-    private void historyKrs(OkrDTO okrDTO){
+    private void historyKrs(OkrEntity okrEntity){
         historyOkrRepository.save(
                 new HistoryOkrEntity(
-                        okrDTO.getId(),
+                        okrEntity.getId(),
                         progressOkr,
                         LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM"))
                 ))
