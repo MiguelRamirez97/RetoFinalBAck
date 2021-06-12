@@ -34,30 +34,37 @@ public class CreateOkr {
         this.mapperUtils = mapperUtils;
         this.historyOkrRepository = historyOkrRepository;
     }
+
     public Mono<String> apply(@Valid OkrDTO okrDTO) {
-
-        var totalWeight = IntStream.range(0,okrDTO.getKrs().size())
-                .reduce(0, (acc, s2) ->
-                        (acc + okrDTO.getKrs().get(s2).getPercentageWeight()));
-
-        return   Optional.of(totalWeight).filter(tw -> tw.equals(100))
-                .map(oktE -> okrRepository.save(mapperUtils.okrDTOToOkrEntity().apply(okrDTO))
-                        .map(t -> {
-                            historyKrs(okrDTO);
-                            okrDTO.getKrs().forEach(kr -> kr.setOkrId(t.getId()));
+        historyKrs(okrDTO);
+        return Optional.of(calculateTotalWeight(okrDTO))
+                .filter(tw -> tw.equals(100))
+                .map(t -> okrRepository.save(mapperUtils.okrDTOToOkrEntity().apply(okrDTO))
+                        .map(okrE -> {
+                            okrDTO.getKrs().forEach(kr -> kr.setOkrId(okrE.getId()));
                             krRepository.saveAll(mapperUtils.listKrDtoToListKrEntity().apply(okrDTO.getKrs()))
                                     .subscribe();
-                            return t.getId();
+
+                            return (okrE.getId());
                         }))
                 .orElseThrow(() -> new IllegalArgumentException("el total de pesos % debe ser igual a 100%"));
 
     }
-
+    
     private void historyKrs(OkrDTO okrDTO){
-        historyOkrRepository.save(new HistoryOkrEntity(okrDTO.getId(), progressOkr, LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM")))).subscribe();
+        historyOkrRepository.save(
+                new HistoryOkrEntity(
+                        okrDTO.getId(),
+                        progressOkr,
+                        LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM"))
+                ))
+                .subscribe();
     }
 
+    private int calculateTotalWeight(OkrDTO okrDTO) {
+        return IntStream.range(0, okrDTO.getKrs().size()).reduce(0, (acc, s2) ->
+                (acc + okrDTO.getKrs().get(s2).getPercentageWeight()));
+    }
 }
-
 
 

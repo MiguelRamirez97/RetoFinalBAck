@@ -6,6 +6,7 @@ import com.sofka.retofinal.model.KrDTO;
 import com.sofka.retofinal.model.OkrDTO;
 import com.sofka.retofinal.repository.KrRepository;
 import com.sofka.retofinal.repository.OkrRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -114,10 +115,9 @@ class CreateOkrTest {
         Mockito.when(krRepository.saveAll(Mockito.anyList())).thenReturn(Flux.fromIterable(krsEntity));
 
         Mono<String> response = createOkr.apply(okrDTOtest);
-        Mono<String>  response2= createOkr.apply(okrDTOtestFail);
 
         StepVerifier.create(response).expectNext("00001").verifyComplete();
-        StepVerifier.create(response2).expectErrorMessage("el total de pesos % debe ser igual a 100%").verify();
+        Assertions.assertThrows(IllegalArgumentException.class,()-> createOkr.apply(okrDTOtestFail));
 
 
 
