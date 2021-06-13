@@ -39,7 +39,7 @@ public class DataCharts {
 
     private Mono<String> searchHistoryDateMax(String okrId) {
         return historyOkrRepository.findByOkrId(okrId)
-                .map(historyOkrEntity -> LocalDate.parse(historyOkrEntity.getDateUpdate()+"-01"))
+                .map(historyOkrEntity -> LocalDate.parse(historyOkrEntity.getDateUpdate()+"-01").plusMonths(1))
                 .collect(Collectors.maxBy(Comparator.comparing(o -> o)))
                 .map(Optional::orElseThrow).map(LocalDate::toString);
     }
@@ -55,7 +55,7 @@ public class DataCharts {
 
     private Mono<List<Long>> getListDataProgress(String okrId, DateTimeFormatter formato, LocalDate startDate, LocalDate endDate) {
         return Flux.fromStream(Stream.iterate(startDate, date -> date.plusMonths(1))
-                .limit(ChronoUnit.MONTHS.between(startDate, endDate) + 1))
+                .limit(ChronoUnit.MONTHS.between(startDate, endDate) + 1 ))
                 .flatMap(localDate -> getProgressOkrUpdate(okrId, formato, localDate))
                 .collectList();
     }
