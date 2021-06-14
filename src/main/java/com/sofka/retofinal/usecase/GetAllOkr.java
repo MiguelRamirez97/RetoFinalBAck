@@ -10,29 +10,28 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Service
-public class AllOkrByUser implements Function<String, Flux<OkrDTO>> {
-
+public class GetAllOkr implements Supplier<Flux<OkrDTO>> {
     private final OkrRepository okrRepository;
     private final MapperUtils mapperUtils;
     private final KrRepository krRepository;
 
-    public AllOkrByUser(OkrRepository okrRepository, MapperUtils mapperUtils, KrRepository krRepository) {
+    public GetAllOkr(OkrRepository okrRepository, MapperUtils mapperUtils, KrRepository krRepository) {
         this.okrRepository = okrRepository;
         this.mapperUtils = mapperUtils;
         this.krRepository = krRepository;
     }
 
-
     @Override
-    public Flux<OkrDTO> apply(String userId) {
-        return okrRepository.findByUserId(userId)
-                .map(mapperUtils.okrEntityToOkrDTO())
+    public Flux<OkrDTO> get() {
+        return okrRepository.findAll()
+                .map(okrEntity -> mapperUtils.okrEntityToOkrDTO()
+                .apply(okrEntity))
                 .flatMap(joinOkrWithKr())
                 .flatMap(Utilities::createProgressOkr);
     }
-
 
     public Function<OkrDTO, Mono<OkrDTO>> joinOkrWithKr() {
         return okrDto ->
@@ -46,5 +45,4 @@ public class AllOkrByUser implements Function<String, Flux<OkrDTO>> {
                         }
                 );
     }
-
 }
