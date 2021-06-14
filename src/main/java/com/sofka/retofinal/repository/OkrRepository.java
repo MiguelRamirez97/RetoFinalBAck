@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface    OkrRepository extends ReactiveCrudRepository<OkrEntity,String> {
+public interface OkrRepository extends ReactiveCrudRepository<OkrEntity,String> {
     Flux<OkrEntity> findByUserId(String userId);
 }

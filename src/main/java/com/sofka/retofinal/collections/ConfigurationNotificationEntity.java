@@ -5,69 +5,70 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class ConfigurationNotificationEntity {
-    private String UserId;
-    private Boolean OKRFinishScreen;
-    private Boolean KRFinishScreen;
-    private Boolean KRLateScreen;
-    private Boolean OKREditScreen;
+
+    private String userId;
+    private Boolean oKRFinishScreen;
+    private Boolean kRFinishScreen;
+    private Boolean kRLateScreen;
+    private Boolean oKREditScreen;
 
     public ConfigurationNotificationEntity(){
     }
 
     public ConfigurationNotificationEntity(String userId){
-        UserId = userId;
-        this.OKRFinishScreen = true;
-        this.KRFinishScreen = true;
-        this.KRLateScreen = true;
-        this.OKREditScreen = true;
+        this.userId = userId;
+        this.oKRFinishScreen = true;
+        this.kRFinishScreen = true;
+        this.kRLateScreen = true;
+        this.oKREditScreen = true;
     }
 
-    public ConfigurationNotificationEntity(String userId, boolean OKRFinishScreen, boolean KRFinishScreen,
-                                           boolean KRLateScreen, boolean OKREditScreen) {
-        UserId = userId;
-        this.OKRFinishScreen = OKRFinishScreen;
-        this.KRFinishScreen = KRFinishScreen;
-        this.KRLateScreen = KRLateScreen;
-        this.OKREditScreen = OKREditScreen;
+    public ConfigurationNotificationEntity(String userId, boolean oKRFinishScreen, boolean kRFinishScreen,
+                                           boolean kRLateScreen, boolean oKREditScreen) {
+        this.userId = userId;
+        this.oKRFinishScreen = oKRFinishScreen;
+        this.kRFinishScreen = kRFinishScreen;
+        this.kRLateScreen = kRLateScreen;
+        this.oKREditScreen = oKREditScreen;
     }
 
     public String getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(String userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
-    public Boolean getOKRFinishScreen() {
-        return OKRFinishScreen;
+    public Boolean getoKRFinishScreen() {
+        return oKRFinishScreen;
     }
 
-    public void setOKRFinishScreen(Boolean OKRFinishScreen) {
-        this.OKRFinishScreen = OKRFinishScreen;
+    public void setoKRFinishScreen(Boolean oKRFinishScreen) {
+        this.oKRFinishScreen = oKRFinishScreen;
     }
 
-    public Boolean getKRFinishScreen() {
-        return KRFinishScreen;
+    public Boolean getkRFinishScreen() {
+        return kRFinishScreen;
     }
 
-    public void setKRFinishScreen(Boolean KRFinishScreen) {
-        this.KRFinishScreen = KRFinishScreen;
+    public void setkRFinishScreen(Boolean kRFinishScreen) {
+        this.kRFinishScreen = kRFinishScreen;
     }
 
-    public Boolean getKRLateScreen() {
-        return KRLateScreen;
+    public Boolean getkRLateScreen() {
+        return kRLateScreen;
     }
 
-    public void setKRLateScreen(Boolean KRLateScreen) {
-        this.KRLateScreen = KRLateScreen;
+    public void setkRLateScreen(Boolean kRLateScreen) {
+        this.kRLateScreen = kRLateScreen;
     }
 
-    public Boolean getOKREditScreen() {
-        return OKREditScreen;
+    public Boolean getoKREditScreen() {
+        return oKREditScreen;
     }
 
-    public void setOKREditScreen(Boolean OKREditScreen) {
-        this.OKREditScreen = OKREditScreen;
+    public void setoKREditScreen(Boolean oKREditScreen) {
+        this.oKREditScreen = oKREditScreen;
     }
 }

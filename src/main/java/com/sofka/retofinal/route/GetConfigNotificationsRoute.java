@@ -21,11 +21,9 @@ public class GetConfigNotificationsRoute {
     @Bean
     RouterFunction<ServerResponse> getAllConfigNotifications(GetConfigNotifications getConfigNotifications) {
         return route(
-                GET("/ConfigNotifications").and(accept(MediaType.APPLICATION_JSON)),
-                serverRequest -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters
-                                .fromPublisher(getConfigNotifications.get(), ConfigurationNotificationDTO.class))
-        );
+                GET("/GetConfigNotifications/{userId}"),
+                request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(getConfigNotifications.apply(request.pathVariable("userId")),
+                                ConfigurationNotificationDTO.class)));
     }
 }

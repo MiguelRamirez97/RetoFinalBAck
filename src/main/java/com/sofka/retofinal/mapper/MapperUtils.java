@@ -84,24 +84,24 @@ public class MapperUtils {
         return configurationNotificationEntity -> {
             var configurationNotificationDTO = new ConfigurationNotificationDTO();
             configurationNotificationDTO.setUserId(configurationNotificationEntity.getUserId());
-            configurationNotificationDTO.setOKRFinishScreen(configurationNotificationEntity.getOKRFinishScreen());
-            configurationNotificationDTO.setKRFinishScreen(configurationNotificationEntity.getKRFinishScreen());
-            configurationNotificationDTO.setKRLateScreen(configurationNotificationEntity.getKRLateScreen());
-            configurationNotificationDTO.setOKREditScreen(configurationNotificationEntity.getOKREditScreen());
+            configurationNotificationDTO.setoKRFinishScreen(configurationNotificationEntity.getoKRFinishScreen());
+            configurationNotificationDTO.setkRFinishScreen(configurationNotificationEntity.getkRFinishScreen());
+            configurationNotificationDTO.setkRLateScreen(configurationNotificationEntity.getkRLateScreen());
+            configurationNotificationDTO.setoKREditScreen(configurationNotificationEntity.getoKREditScreen());
             return configurationNotificationDTO;
 
         };
     }
 
-    public Function<ConfigurationNotificationDTO,ConfigurationNotificationEntity>
+    public Function<ConfigurationNotificationDTO, ConfigurationNotificationEntity>
     ConfigurationNotificationDTOToConfigurationNotificationEntity() {
         return configurationNotificationDTO -> {
             var configurationNotificationEntity = new ConfigurationNotificationEntity();
             configurationNotificationEntity.setUserId(configurationNotificationDTO.getUserId());
-            configurationNotificationEntity.setOKRFinishScreen(configurationNotificationDTO.getOKRFinishScreen());
-            configurationNotificationEntity.setKRFinishScreen(configurationNotificationDTO.getKRFinishScreen());
-            configurationNotificationEntity.setKRLateScreen(configurationNotificationDTO.getKRLateScreen());
-            configurationNotificationEntity.setOKREditScreen(configurationNotificationDTO.getOKREditScreen());
+            configurationNotificationEntity.setoKRFinishScreen(configurationNotificationDTO.getoKRFinishScreen());
+            configurationNotificationEntity.setkRFinishScreen(configurationNotificationDTO.getkRFinishScreen());
+            configurationNotificationEntity.setkRLateScreen(configurationNotificationDTO.getkRLateScreen());
+            configurationNotificationEntity.setoKREditScreen(configurationNotificationDTO.getoKREditScreen());
             return configurationNotificationEntity;
 
         };
