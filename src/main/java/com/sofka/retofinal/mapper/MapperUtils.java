@@ -83,6 +83,7 @@ public class MapperUtils {
     ConfigurationNotificationEntityToConfigurationNotificationDTO() {
         return configurationNotificationEntity -> {
             var configurationNotificationDTO = new ConfigurationNotificationDTO();
+            configurationNotificationDTO.setId(configurationNotificationEntity.getId());
             configurationNotificationDTO.setUserId(configurationNotificationEntity.getUserId());
             configurationNotificationDTO.setoKRFinishScreen(configurationNotificationEntity.getoKRFinishScreen());
             configurationNotificationDTO.setkRFinishScreen(configurationNotificationEntity.getkRFinishScreen());

@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class ConfigurationNotificationEntity {
 
+    @Id
+    private String id;
     private String userId;
     private Boolean oKRFinishScreen;
     private Boolean kRFinishScreen;
@@ -15,21 +17,22 @@ public class ConfigurationNotificationEntity {
     public ConfigurationNotificationEntity(){
     }
 
-    public ConfigurationNotificationEntity(String userId){
-        this.userId = userId;
-        this.oKRFinishScreen = true;
-        this.kRFinishScreen = true;
-        this.kRLateScreen = true;
-        this.oKREditScreen = true;
-    }
-
-    public ConfigurationNotificationEntity(String userId, boolean oKRFinishScreen, boolean kRFinishScreen,
+    public ConfigurationNotificationEntity(String id,String userId, boolean oKRFinishScreen, boolean kRFinishScreen,
                                            boolean kRLateScreen, boolean oKREditScreen) {
+        this.id = id;
         this.userId = userId;
         this.oKRFinishScreen = oKRFinishScreen;
         this.kRFinishScreen = kRFinishScreen;
         this.kRLateScreen = kRLateScreen;
         this.oKREditScreen = oKREditScreen;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserId() {

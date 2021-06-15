@@ -2,6 +2,7 @@ package com.sofka.retofinal.model;
 
 public class ConfigurationNotificationDTO {
 
+    private String id;
     private String userId;
     private Boolean oKRFinishScreen;
     private Boolean kRFinishScreen;
@@ -10,12 +11,21 @@ public class ConfigurationNotificationDTO {
 
     public ConfigurationNotificationDTO(){}
 
-    public ConfigurationNotificationDTO(String userId, Boolean oKRFinishScreen, Boolean kRFinishScreen, Boolean kRLateScreen, Boolean oKREditScreen) {
+    public ConfigurationNotificationDTO(String id,String userId, Boolean oKRFinishScreen, Boolean kRFinishScreen, Boolean kRLateScreen, Boolean oKREditScreen) {
+        this.id = id;
         this.userId = userId;
         this.oKRFinishScreen = oKRFinishScreen;
         this.kRFinishScreen = kRFinishScreen;
         this.kRLateScreen = kRLateScreen;
         this.oKREditScreen = oKREditScreen;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserId() {
