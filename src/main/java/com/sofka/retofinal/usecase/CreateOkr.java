@@ -1,6 +1,5 @@
 package com.sofka.retofinal.usecase;
 
-
 import com.sofka.retofinal.collections.HistoryOkrEntity;
 import com.sofka.retofinal.collections.OkrEntity;
 import com.sofka.retofinal.mapper.MapperUtils;

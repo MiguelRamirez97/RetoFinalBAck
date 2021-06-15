@@ -1,8 +1,6 @@
 package com.sofka.retofinal.route;
 
-import com.sofka.retofinal.model.ConfigurationNotificationDTO;
 import com.sofka.retofinal.model.NotificationDTO;
-import com.sofka.retofinal.usecase.CreateConfigNotifications;
 import com.sofka.retofinal.usecase.CreateNotifications;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
