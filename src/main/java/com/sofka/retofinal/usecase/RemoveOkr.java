@@ -11,12 +11,12 @@ import java.util.function.Function;
 
 @Service
 @Validated
-public class DeleteUseCase implements Function<String, Mono<Void>> {
+public class RemoveOkr implements Function<String, Mono<Void>> {
     private final OkrRepository okrRepository;
     private final KrRepository krRepository;
     private final MapperUtils mapperUtils;
 
-    public DeleteUseCase(OkrRepository okrRepository, KrRepository krRepository, MapperUtils mapperUtils) {
+    public RemoveOkr(OkrRepository okrRepository, KrRepository krRepository, MapperUtils mapperUtils) {
         this.okrRepository = okrRepository;
         this.krRepository = krRepository;
         this.mapperUtils = mapperUtils;
@@ -25,7 +25,6 @@ public class DeleteUseCase implements Function<String, Mono<Void>> {
     @Override
     public Mono<Void> apply(String id) {
         return okrRepository.deleteById(id)
-                .switchIfEmpty(Mono.defer(() -> okrRepository.deleteById(id)))
-                ;
+                .switchIfEmpty(Mono.defer(() -> krRepository.deleteByOkrId(id)));
     }
 }
