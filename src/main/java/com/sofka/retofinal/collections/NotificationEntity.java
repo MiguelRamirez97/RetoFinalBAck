@@ -5,19 +5,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class NotificationEntity {
+
     @Id
     private String id;
     private String userId;
     private String okrId;
     private String krId;
     private String message;
+    private NotificationsKind type;
 
-    public NotificationEntity(String id, String userId, String okrId, String krId, String message) {
+    public NotificationEntity(String id, String userId, String okrId, String krId, String message, NotificationsKind type) {
         this.id = id;
         this.userId = userId;
         this.okrId = okrId;
         this.krId = krId;
         this.message = message;
+        this.type = type;
+    }
+
+    public NotificationEntity() {
     }
 
     public String getId() {
@@ -58,5 +64,13 @@ public class NotificationEntity {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public NotificationsKind getType() {
+        return type;
+    }
+
+    public void setType(NotificationsKind type) {
+        this.type = type;
     }
 }

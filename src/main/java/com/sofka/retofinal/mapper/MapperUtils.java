@@ -118,7 +118,21 @@ public class MapperUtils {
           notificationDTO.setOkrId(notificationEntity.getOkrId());
           notificationDTO.setKrId(notificationEntity.getKrId());
           notificationDTO.setMessage(notificationEntity.getMessage());
+          notificationDTO.setType(notificationEntity.getType());
           return notificationDTO;
+        };
+    }
+
+    public Function<NotificationDTO, NotificationEntity> NotificationDTOToNotificationEntity(){
+        return notificationDTO1 -> {
+            var notificationEntity = new NotificationEntity();
+            notificationEntity.setId(notificationDTO1.getId());
+            notificationEntity.setUserId(notificationDTO1.getUserId());
+            notificationEntity.setOkrId(notificationDTO1.getOkrId());
+            notificationEntity.setKrId(notificationDTO1.getKrId());
+            notificationEntity.setMessage(notificationDTO1.getMessage());
+            notificationEntity.setType(notificationDTO1.getType());
+            return notificationEntity;
         };
     }
 
