@@ -2,9 +2,11 @@ package com.sofka.retofinal.mapper;
 
 import com.sofka.retofinal.collections.ConfigurationNotificationEntity;
 import com.sofka.retofinal.collections.KrEntity;
+import com.sofka.retofinal.collections.NotificationEntity;
 import com.sofka.retofinal.collections.OkrEntity;
 import com.sofka.retofinal.model.ConfigurationNotificationDTO;
 import com.sofka.retofinal.model.KrDTO;
+import com.sofka.retofinal.model.NotificationDTO;
 import com.sofka.retofinal.model.OkrDTO;
 import org.springframework.stereotype.Component;
 
@@ -105,6 +107,18 @@ public class MapperUtils {
             configurationNotificationEntity.setoKREditScreen(configurationNotificationDTO.getoKREditScreen());
             return configurationNotificationEntity;
 
+        };
+    }
+
+    public Function<NotificationEntity, NotificationDTO> NotificationEntityToNotificationDTO(){
+        return notificationEntity -> {
+          var notificationDTO = new NotificationDTO();
+          notificationDTO.setId(notificationEntity.getId());
+          notificationDTO.setUserId(notificationEntity.getUserId());
+          notificationDTO.setOkrId(notificationEntity.getOkrId());
+          notificationDTO.setKrId(notificationEntity.getKrId());
+          notificationDTO.setMessage(notificationEntity.getMessage());
+          return notificationDTO;
         };
     }
 
