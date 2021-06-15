@@ -1,7 +1,9 @@
 package com.sofka.retofinal.mapper;
 
+import com.sofka.retofinal.collections.ConfigurationNotificationEntity;
 import com.sofka.retofinal.collections.KrEntity;
 import com.sofka.retofinal.collections.OkrEntity;
+import com.sofka.retofinal.model.ConfigurationNotificationDTO;
 import com.sofka.retofinal.model.KrDTO;
 import com.sofka.retofinal.model.OkrDTO;
 import org.springframework.stereotype.Component;
@@ -73,6 +75,35 @@ public class MapperUtils {
             okrDTO.setVertical(okrEntity.getVertical());
             okrDTO.setDescription(okrEntity.getDescription());
             return okrDTO;
+
+        };
+    }
+
+    public Function<ConfigurationNotificationEntity, ConfigurationNotificationDTO>
+    ConfigurationNotificationEntityToConfigurationNotificationDTO() {
+        return configurationNotificationEntity -> {
+            var configurationNotificationDTO = new ConfigurationNotificationDTO();
+            configurationNotificationDTO.setId(configurationNotificationEntity.getId());
+            configurationNotificationDTO.setUserId(configurationNotificationEntity.getUserId());
+            configurationNotificationDTO.setoKRFinishScreen(configurationNotificationEntity.getoKRFinishScreen());
+            configurationNotificationDTO.setkRFinishScreen(configurationNotificationEntity.getkRFinishScreen());
+            configurationNotificationDTO.setkRLateScreen(configurationNotificationEntity.getkRLateScreen());
+            configurationNotificationDTO.setoKREditScreen(configurationNotificationEntity.getoKREditScreen());
+            return configurationNotificationDTO;
+
+        };
+    }
+
+    public Function<ConfigurationNotificationDTO, ConfigurationNotificationEntity>
+    ConfigurationNotificationDTOToConfigurationNotificationEntity() {
+        return configurationNotificationDTO -> {
+            var configurationNotificationEntity = new ConfigurationNotificationEntity();
+            configurationNotificationEntity.setUserId(configurationNotificationDTO.getUserId());
+            configurationNotificationEntity.setoKRFinishScreen(configurationNotificationDTO.getoKRFinishScreen());
+            configurationNotificationEntity.setkRFinishScreen(configurationNotificationDTO.getkRFinishScreen());
+            configurationNotificationEntity.setkRLateScreen(configurationNotificationDTO.getkRLateScreen());
+            configurationNotificationEntity.setoKREditScreen(configurationNotificationDTO.getoKREditScreen());
+            return configurationNotificationEntity;
 
         };
     }
