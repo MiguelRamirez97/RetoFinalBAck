@@ -22,6 +22,7 @@ public class UpdateConfigNotifications {
                     configurationNotificationEntity.setkRFinishScreen(configurationNotificationDTO.getkRFinishScreen());
                     configurationNotificationEntity.setkRLateScreen(configurationNotificationDTO.getkRLateScreen());
                     configurationNotificationEntity.setoKREditScreen(configurationNotificationDTO.getoKREditScreen());
+                    configurationNotificationEntity.setoKRDeleteScreen(configurationNotificationDTO.getoKRDeleteScreen());
                     return configurationNotificationRepository.save(configurationNotificationEntity);
                 }).flatMap(ConfigurationNotificationEntity -> Mono.empty());
     }

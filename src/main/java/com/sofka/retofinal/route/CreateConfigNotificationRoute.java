@@ -20,14 +20,11 @@ public class CreateConfigNotificationRoute {
     public RouterFunction<ServerResponse> createConfigNotify(CreateConfigNotifications createConfigNotifications) {
         return route(POST("/createConfigNotifications").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ConfigurationNotificationDTO.class)
-                        .flatMap(configurationNotificationDTO -> {
-                            System.out.println(configurationNotificationDTO.getUserId());
-                            return createConfigNotifications
+                        .flatMap(configurationNotificationDTO -> createConfigNotifications
                                             .apply(configurationNotificationDTO)
                                             .flatMap(response -> ServerResponse.ok()
                                                     .contentType(MediaType.APPLICATION_JSON)
-                                                    .bodyValue(response));
-                            }
+                                                    .bodyValue(response))
                         )
         );
     }

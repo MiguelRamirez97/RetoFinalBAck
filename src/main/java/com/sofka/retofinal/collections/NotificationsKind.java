@@ -5,4 +5,5 @@ public enum NotificationsKind {
     KRFINISHSCREEN,
     KRLATESCREEN,
     OKREDITSCREEN,
+    OKRDELETESCREEN,
 }

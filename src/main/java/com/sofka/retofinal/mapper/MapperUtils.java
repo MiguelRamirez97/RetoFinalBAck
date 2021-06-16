@@ -91,6 +91,7 @@ public class MapperUtils {
             configurationNotificationDTO.setkRFinishScreen(configurationNotificationEntity.getkRFinishScreen());
             configurationNotificationDTO.setkRLateScreen(configurationNotificationEntity.getkRLateScreen());
             configurationNotificationDTO.setoKREditScreen(configurationNotificationEntity.getoKREditScreen());
+            configurationNotificationDTO.setoKRDeleteScreen(configurationNotificationEntity.getoKRDeleteScreen());
             return configurationNotificationDTO;
 
         };
@@ -105,6 +106,7 @@ public class MapperUtils {
             configurationNotificationEntity.setkRFinishScreen(configurationNotificationDTO.getkRFinishScreen());
             configurationNotificationEntity.setkRLateScreen(configurationNotificationDTO.getkRLateScreen());
             configurationNotificationEntity.setoKREditScreen(configurationNotificationDTO.getoKREditScreen());
+            configurationNotificationEntity.setoKRDeleteScreen(configurationNotificationDTO.getoKRDeleteScreen());
             return configurationNotificationEntity;
 
         };

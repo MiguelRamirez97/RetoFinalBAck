@@ -8,16 +8,19 @@ public class ConfigurationNotificationDTO {
     private Boolean kRFinishScreen;
     private Boolean kRLateScreen;
     private Boolean oKREditScreen;
+    private Boolean oKRDeleteScreen;
 
     public ConfigurationNotificationDTO(){}
 
-    public ConfigurationNotificationDTO(String id,String userId, Boolean oKRFinishScreen, Boolean kRFinishScreen, Boolean kRLateScreen, Boolean oKREditScreen) {
+    public ConfigurationNotificationDTO(String id,String userId, Boolean oKRFinishScreen, Boolean kRFinishScreen,
+                                        Boolean kRLateScreen, Boolean oKREditScreen, Boolean oKRDeleteScreen) {
         this.id = id;
         this.userId = userId;
         this.oKRFinishScreen = oKRFinishScreen;
         this.kRFinishScreen = kRFinishScreen;
         this.kRLateScreen = kRLateScreen;
         this.oKREditScreen = oKREditScreen;
+        this.oKRDeleteScreen = oKRDeleteScreen;
     }
 
     public String getId() {
@@ -66,5 +69,13 @@ public class ConfigurationNotificationDTO {
 
     public void setoKREditScreen(Boolean oKREditScreen) {
         this.oKREditScreen = oKREditScreen;
+    }
+
+    public Boolean getoKRDeleteScreen() {
+        return oKRDeleteScreen;
+    }
+
+    public void setoKRDeleteScreen(Boolean oKRDeleteScreen) {
+        this.oKRDeleteScreen = oKRDeleteScreen;
     }
 }

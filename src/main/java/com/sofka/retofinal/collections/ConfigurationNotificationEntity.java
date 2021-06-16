@@ -15,18 +15,20 @@ public class ConfigurationNotificationEntity {
     private Boolean kRFinishScreen;
     private Boolean kRLateScreen;
     private Boolean oKREditScreen;
+    private Boolean oKRDeleteScreen;
 
     public ConfigurationNotificationEntity(){
     }
 
     public ConfigurationNotificationEntity(String id,String userId, boolean oKRFinishScreen, boolean kRFinishScreen,
-                                           boolean kRLateScreen, boolean oKREditScreen) {
+                                           boolean kRLateScreen, boolean oKREditScreen, boolean oKRDeleteScreen) {
         this.id = id;
         this.userId = userId;
         this.oKRFinishScreen = oKRFinishScreen;
         this.kRFinishScreen = kRFinishScreen;
         this.kRLateScreen = kRLateScreen;
         this.oKREditScreen = oKREditScreen;
+        this.oKRDeleteScreen = oKRDeleteScreen;
     }
 
     public String getId() {
@@ -75,5 +77,13 @@ public class ConfigurationNotificationEntity {
 
     public void setoKREditScreen(Boolean oKREditScreen) {
         this.oKREditScreen = oKREditScreen;
+    }
+
+    public Boolean getoKRDeleteScreen() {
+        return oKRDeleteScreen;
+    }
+
+    public void setoKRDeleteScreen(Boolean oKRDeleteScreen) {
+        this.oKRDeleteScreen = oKRDeleteScreen;
     }
 }
