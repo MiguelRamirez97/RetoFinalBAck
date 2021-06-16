@@ -19,7 +19,7 @@ public class GetOkrId {
     @Bean
     RouterFunction<ServerResponse> getById(GetOrkById getOrkById) {
         return route(
-                GET("/okr/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/okrid/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 serverRequest -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters
