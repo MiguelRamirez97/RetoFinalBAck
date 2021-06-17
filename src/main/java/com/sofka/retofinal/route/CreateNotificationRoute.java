@@ -18,14 +18,11 @@ public class CreateNotificationRoute {
     public RouterFunction<ServerResponse> createNotify(CreateNotifications createNotifications) {
         return route(POST("/createNotifications").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(NotificationDTO.class)
-                        .flatMap(notificationDTO -> {
-                                    System.out.println(notificationDTO.getUserId());
-                                    return createNotifications
+                        .flatMap(notificationDTO -> createNotifications
                                             .apply(notificationDTO)
                                             .flatMap(response -> ServerResponse.ok()
                                                     .contentType(MediaType.APPLICATION_JSON)
-                                                    .bodyValue(response));
-                                }
+                                                    .bodyValue(response))
                         )
         );
     }
