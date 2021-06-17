@@ -23,5 +23,6 @@ public class CreateNotificationRoute {
                                             .flatMap(response -> ServerResponse.ok()
                                                     .contentType(MediaType.APPLICATION_JSON)
                                                     .bodyValue(response))));
+
     }
 }
